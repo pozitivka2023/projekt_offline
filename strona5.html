@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista i Slider</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+       
+        .container {
+            display: flex;
+            align-items: flex-start; 
+            gap: 20px; 
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .spis {
+            width: 40%;
+        }
+
+        .ad-container {
+            width: 50%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ads {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .ad {
+            flex: 0 0 100%;
+        }
+
+        .ad img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        .ad-controls button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="spis">
+        <h1>Spis moich zadań JavaScript</h1>
+        <ul>
+            <li><a href="jszsm3/1kod1.html">kod1</a></li>
+            <li><a href="jszsm3/2kod4.html">2kod4.html</a></li>
+            <li><a href="jszsm3/3kod5.html">3kod5.html</a></li>
+            <li><a href="jszsm3/3kod5.html">3kod5.html</a></li>
+            <li><a href="jszsm3/6kod8.html">6kod8.html</a></li>
+            <li><a href="jszsm3/7kod9.html">7kod9.html</a></li>
+            <li><a href="jszsm3/8kod10.html">8kod10.html</a></li>
+            <li><a href="jszsm3/9kod11.html">9kod11.html</a></li>
+            <li><a href="jszsm3/10kod12.html">10kod12.html</a></li>
+            <li><a href="jszsm3/11kod13.html">11kod13.html</a></li>
+            <li><a href="jszsm3/12kod145.html">12kod145.html</a></li>
+            <li><a href="jszsm3/array3kod22.html">array3kod22.html</a></li>
+            <li><a href="jszsm3/array5kod245.html">array5kod245.html</a></li>
+            <li><a href="jszsm3/array120.html">array120.html</a></li>
+            <li><a href="jszsm3/arraykod21.html">arraykod21.html</a></li>
+            <li><a href="jszsm3/arrey4kod23.html">arrey4kod23.html</a></li>
+            <li><a href="jszsm3/cw1.html">cw1.html</a></li>
+            <li><a href="jszsm3/cw2.html">cw2.html</a></li>
+            <li><a href="jszsm3/date1kod18.html">date1kod18.html</a></li>
+            <li><a href="moja/test js/index2.html">Test JavaScript</a></li>
+            <li><a href="moja/test js/rezultat.html">wyniki testu, jak inna strona</a></li>
+            <li><a href="moja/slider/slider.html">slider</a></li>
+            <li><a href="moja/timer/timer 5min.html">stoper 5min</a></li>
+            <li><a href="jszsm3/zegarki/timer.html">Zegarek</a></li>
+        
+        </ul>
+    </div>
+
+   
+    <div class="ad-container">
+        <div class="ads">
+            <div class="ad">
+                <img src="zdjecia/slider1.png" alt="1">
+            </div>
+            <div class="ad">
+                <img src="zdjecia/slider2.png" alt="2">
+            </div>
+            <div class="ad">
+                <img src="zdjecia/slider3.png" alt="3">
+            </div>
+            <div class="ad">
+                <img src="zdjecia/slider4.png" alt="4">
+            </div>
+            <div class="ad">
+                <img src="zdjecia/slider5.png" alt="5">
+            </div>
+        </div>
+        <div class="ad-controls">
+            <button class="prev" onclick="plusAds(-1)">&#10094;</button>
+            <button class="next" onclick="plusAds(1)">&#10095;</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let adIndex = 0;
+    let ads = document.querySelector(".ads");
+    let totalAds = document.querySelectorAll(".ad").length;
+    let timer;
+
+    function showAds(n) {
+        if (n >= totalAds) {
+            adIndex = 0;
+        } else if (n < 0) {
+            adIndex = totalAds - 1;
+        } else {
+            adIndex = n;
+        }
+
+        let offset = -adIndex * 100; 
+        ads.style.transform = `translateX(${offset}%)`;
+    }
+
+    function plusAds(n) {
+        clearTimeout(timer);
+        showAds(adIndex + n);
+        timer = setTimeout(autoSlide, 3000);
+    }
+
+    function autoSlide() {
+        plusAds(1);
+    }
+
+    showAds(adIndex);
+    timer = setTimeout(autoSlide, 3000);
+</script>
+
+</body>
+</html>
